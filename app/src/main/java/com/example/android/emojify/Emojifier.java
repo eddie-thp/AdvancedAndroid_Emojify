@@ -77,7 +77,7 @@ public class Emojifier {
                 Face face = faces.valueAt(i);
 
                 // Log the classification probabilities for each face.
-                getClassifications(face);
+                whichEmoji(face);
                 // TODO (6): Change the call to getClassifications to whichEmoji() to log the appropriate emoji for the facial expression.
             }
 
@@ -93,14 +93,49 @@ public class Emojifier {
      *
      * @param face The face to get the classification probabilities.
      */
-    private static void getClassifications(Face face) {
-        // TODO (2): Change the name of the getClassifications() method to whichEmoji() (also change the log statements)
-        Log.d(LOG_TAG,"Classification - Smiling ? " + face.getIsSmilingProbability() + " Right Eye Open ? " + face.getIsRightEyeOpenProbability() + "Left Eye Open ?" + face.getIsLeftEyeOpenProbability());
+    private static void whichEmoji(Face face) {
+        // DONE (2): Change the name of the getClassifications() method to whichEmoji() (also change the log statements)
+        float smilingProbability = face.getIsSmilingProbability();
+        float rightEyeOpenProbability = face.getIsSmilingProbability();
+        float leftEyeOpenProbability = face.getIsSmilingProbability();
+        Log.d(LOG_TAG,"Classification - Smiling ? " + smilingProbability + " Right Eye Open ? " + rightEyeOpenProbability + "Left Eye Open ?" + leftEyeOpenProbability);
 
-        // TODO (3): Create threshold constants for a person smiling, and and eye being open by taking pictures of yourself and your friends and noting the logs.
-        // TODO (4): Create 3 boolean variables to track the state of the facial expression based on the thresholds you set in the previous step: smiling, left eye closed, right eye closed.
-        // TODO (5): Create an if/else system that selects the appropriate emoji based on the above booleans and log the result.
+        // DONE (3): Create threshold constants for a person smiling, and and eye being open by taking pictures of yourself and your friends and noting the logs.
+        // DONE (4): Create 3 boolean variables to track the state of the facial expression based on the thresholds you set in the previous step: smiling, left eye closed, right eye closed.
+        boolean smiling = smilingProbability > 0.5;
+        boolean rightEyeOpen = rightEyeOpenProbability > 0.4;
+        boolean leftEyeOpen = leftEyeOpenProbability > 0.4;
+
+        // DONE (5): Create an if/else system that selects the appropriate emoji based on the above booleans and log the result.
+        Emoji emoji = Emoji.SMILING;
+        if (!smiling && rightEyeOpen && leftEyeOpen) {
+            emoji = Emoji.FROWNING;
+        } else if (smiling && rightEyeOpen && !leftEyeOpen) {
+            emoji = Emoji.LEFT_WINK;
+        } else if (smiling && !rightEyeOpen && leftEyeOpen) {
+            emoji = Emoji.RIGHT_WINK;
+        } else if (!smiling && rightEyeOpen && !leftEyeOpen) {
+            emoji = Emoji.LEFT_WINK_FROWNING;
+        } else if (!smiling && !rightEyeOpen && leftEyeOpen) {
+            emoji = Emoji.RIGHT_WINK_FROWNING;
+        } else if (smiling && !rightEyeOpen && !leftEyeOpen) {
+            emoji = Emoji.CLOSED_EYES_SMILING;
+        } else if (!smiling && !rightEyeOpen && !leftEyeOpen) {
+            emoji = Emoji.CLOSED_EYES_FROWNING;
+        }
+
+        Log.d(LOG_TAG, "Resulting emoji: " + emoji);
     }
 
-    // TODO (1): Create an enum class called Emoji that contains all the possible emoji you can make (smiling, frowning, left wink, right wink, left wink frowning, right wink frowning, closed eye smiling, close eye frowning).
+    // DONE (1): Create an enum class called Emoji that contains all the possible emoji you can make (smiling, frowning, left wink, right wink, left wink frowning, right wink frowning, closed eye smiling, close eye frowning).
+    enum Emoji {
+        SMILING,
+        FROWNING,
+        LEFT_WINK,
+        RIGHT_WINK,
+        LEFT_WINK_FROWNING,
+        RIGHT_WINK_FROWNING,
+        CLOSED_EYES_SMILING,
+        CLOSED_EYES_FROWNING
+    }
 }
