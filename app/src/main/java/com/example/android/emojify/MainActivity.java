@@ -38,23 +38,36 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends AppCompatActivity {
 
-    // TODO (2): Replace all View declarations with Butterknife annotations
+    // DONE (2): Replace all View declarations with Butterknife annotations
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 1;
 
     private static final String FILE_PROVIDER_AUTHORITY = "com.example.android.fileprovider";
 
-    private ImageView mImageView;
+    @BindView(R.id.image_view)
+    ImageView mImageView;
 
-    private Button mEmojifyButton;
-    private FloatingActionButton mShareFab;
-    private FloatingActionButton mSaveFab;
-    private FloatingActionButton mClearFab;
+    @BindView(R.id.emojify_button)
+    Button mEmojifyButton;
 
-    private TextView mTitleTextView;
+    @BindView(R.id.share_button)
+    FloatingActionButton mShareFab;
+
+    @BindView(R.id.save_button)
+    FloatingActionButton mSaveFab;
+
+    @BindView(R.id.clear_button)
+    FloatingActionButton mClearFab;
+
+    @BindView(R.id.title_text_view)
+    TextView mTitleTextView;
 
     private String mTempPhotoPath;
 
@@ -66,14 +79,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO (3): Replace the findViewById calls with the Butterknife data binding
-        // Bind the views
-        mImageView = (ImageView) findViewById(R.id.image_view);
-        mEmojifyButton = (Button) findViewById(R.id.emojify_button);
-        mShareFab = (FloatingActionButton) findViewById(R.id.share_button);
-        mSaveFab = (FloatingActionButton) findViewById(R.id.save_button);
-        mClearFab = (FloatingActionButton) findViewById(R.id.clear_button);
-        mTitleTextView = (TextView) findViewById(R.id.title_text_view);
+        // DONE (3): Replace the findViewById calls with the Butterknife data binding
+        ButterKnife.bind(this);
     }
 
     /**
@@ -81,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view The emojify me button.
      */
+    @OnClick(R.id.emojify_button)
     public void emojifyMe(View view) {
         // Check for the external storage permission
         if (ContextCompat.checkSelfPermission(this,
@@ -193,13 +201,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // TODO (4): Replace OnClick methods with Butterknife annotations for OnClicks
+    // DONE (4): Replace OnClick methods with Butterknife annotations for OnClicks
     /**
      * OnClick method for the save button.
      *
      * @param view The save button.
      */
-    public void saveMe(View view) {
+    @OnClick(R.id.save_button)
+    public void saveMe() {
         // Delete the temporary image file
         BitmapUtils.deleteImageFile(this, mTempPhotoPath);
 
@@ -212,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view The share button.
      */
-    public void shareMe(View view) {
+    @OnClick(R.id.share_button)
+    public void shareMe() {
         // Delete the temporary image file
         BitmapUtils.deleteImageFile(this, mTempPhotoPath);
 
@@ -228,7 +238,8 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view The clear button.
      */
-    public void clearImage(View view) {
+    @OnClick(R.id.clear_button)
+    public void clearImage() {
         // Clear the image and toggle the view visibility
         mImageView.setImageResource(0);
         mEmojifyButton.setVisibility(View.VISIBLE);
