@@ -23,7 +23,6 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.support.annotation.DrawableRes;
-import android.util.Log;
 import android.util.SparseArray;
 
 import android.widget.Toast;
@@ -32,12 +31,13 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 
+import timber.log.Timber;
+
 // DONE (1): Create a Java class called Emojifier
 // DONE (2): Create a static method in the Emojifier class called detectFaces() which detects and logs the number of faces in a given bitmap.
 public class Emojifier {
 
-    // TODO (3): Change all Log statements to Timber logs and remove the LOG_TAG variable
-    private static final String LOG_TAG = Emojifier.class.getSimpleName();
+    // DONE(3): Change all Log statements to Timber logs and remove the LOG_TAG variable
 
     // UDACITY SOLUTION - COMMENTED OUT
     // private static final float EMOJI_SCALE_FACTOR = .9f;
@@ -80,7 +80,7 @@ public class Emojifier {
         SparseArray<Face> faces = detector.detect(frame);
 
         // Log the number of faces
-        Log.d(LOG_TAG, "detectFaces: number of faces = " + faces.size());
+        Timber.d("detectFaces: number of faces = %d", faces.size());
 
         // DONE (7): Create a variable called resultBitmap and initialize it to the original picture bitmap passed into the detectFacesAndOverlayEmoji() method
         // Initialize result bitmap to original picture
@@ -157,7 +157,7 @@ public class Emojifier {
         float smilingProbability = face.getIsSmilingProbability();
         float rightEyeOpenProbability = face.getIsRightEyeOpenProbability();
         float leftEyeOpenProbability = face.getIsLeftEyeOpenProbability();
-        Log.d(LOG_TAG,"Classification - Smiling ? " + smilingProbability + " Right Eye Open ? " + rightEyeOpenProbability + "Left Eye Open ?" + leftEyeOpenProbability);
+        Timber.d("Classification - Smiling ? " + smilingProbability + " Right Eye Open ? " + rightEyeOpenProbability + "Left Eye Open ?" + leftEyeOpenProbability);
 
         // DONE (3): Create threshold constants for a person smiling, and and eye being open by taking pictures of yourself and your friends and noting the logs.
         // DONE (4): Create 3 boolean variables to track the state of the facial expression based on the thresholds you set in the previous step: smiling, left eye closed, right eye closed.
@@ -184,7 +184,7 @@ public class Emojifier {
         }
 
         // Log the chosen Emoji
-        Log.d(LOG_TAG, "Resulting emoji: " + emoji);
+        Timber.d("Resulting emoji: " + emoji);
 
         // DONE (2): Have the method return the selected Emoji type.
         return emoji;
