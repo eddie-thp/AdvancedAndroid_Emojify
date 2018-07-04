@@ -36,6 +36,7 @@ import com.google.android.gms.vision.face.FaceDetector;
 // DONE (2): Create a static method in the Emojifier class called detectFaces() which detects and logs the number of faces in a given bitmap.
 public class Emojifier {
 
+    // TODO (3): Change all Log statements to Timber logs and remove the LOG_TAG variable
     private static final String LOG_TAG = Emojifier.class.getSimpleName();
 
     // UDACITY SOLUTION - COMMENTED OUT

@@ -80,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // DONE (3): Replace the findViewById calls with the Butterknife data binding
+        // Bind the views
         ButterKnife.bind(this);
+
+        // TODO (2): Set up Timber
     }
 
     /**
@@ -202,10 +205,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     // DONE (4): Replace OnClick methods with Butterknife annotations for OnClicks
+
     /**
      * OnClick method for the save button.
-     *
-     * @param view The save button.
      */
     @OnClick(R.id.save_button)
     public void saveMe() {
@@ -218,8 +220,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * OnClick method for the share button, saves and shares the new bitmap.
-     *
-     * @param view The share button.
      */
     @OnClick(R.id.share_button)
     public void shareMe() {
@@ -235,8 +235,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * OnClick for the clear button, resets the app to original state.
-     *
-     * @param view The clear button.
      */
     @OnClick(R.id.clear_button)
     public void clearImage() {
