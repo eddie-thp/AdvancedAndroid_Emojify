@@ -30,5 +30,7 @@ dependencies {
     // DONE (1): Add Google Mobile Vision Library dependency
     implementation 'com.google.android.gms:play-services-vision:15.0.2'
 
+    // TODO (1): Add Butterknife library and annotations dependency
+
     testImplementation 'junit:junit:4.12'
 }

@@ -40,6 +40,8 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    // TODO (2): Replace all View declarations with Butterknife annotations
+
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 1;
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // TODO (3): Replace the findViewById calls with the Butterknife data binding
         // Bind the views
         mImageView = (ImageView) findViewById(R.id.image_view);
         mEmojifyButton = (Button) findViewById(R.id.emojify_button);
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         // DONE (3): Call the new detectFaces() method, passing in the resampled bitmap to detect the faces in the picture.
         // DONE (10): Change the method call from detectFaces() to detectFacesAndOverlayEmoji() and assign the result to mResultsBitmap.
-        // Detect the faces
+        // Detect the faces and overlay the appropriate emoji
         mResultsBitmap = Emojifier.detectFacesAndOverlayEmoji(this, mResultsBitmap);
 
         // Set the new bitmap to the ImageView
@@ -190,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // TODO (4): Replace OnClick methods with Butterknife annotations for OnClicks
     /**
      * OnClick method for the save button.
      *
