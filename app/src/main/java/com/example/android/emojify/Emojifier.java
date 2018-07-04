@@ -96,8 +96,8 @@ public class Emojifier {
     private static void whichEmoji(Face face) {
         // DONE (2): Change the name of the getClassifications() method to whichEmoji() (also change the log statements)
         float smilingProbability = face.getIsSmilingProbability();
-        float rightEyeOpenProbability = face.getIsSmilingProbability();
-        float leftEyeOpenProbability = face.getIsSmilingProbability();
+        float rightEyeOpenProbability = face.getIsRightEyeOpenProbability();
+        float leftEyeOpenProbability = face.getIsLeftEyeOpenProbability();
         Log.d(LOG_TAG,"Classification - Smiling ? " + smilingProbability + " Right Eye Open ? " + rightEyeOpenProbability + "Left Eye Open ?" + leftEyeOpenProbability);
 
         // DONE (3): Create threshold constants for a person smiling, and and eye being open by taking pictures of yourself and your friends and noting the logs.
